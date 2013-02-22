@@ -1,6 +1,6 @@
 {
   "name": "lreader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "按行读取任意大的文件",
   "keywords": [],
   "author": "dead-horse <dead_horse@qq.com>",
