@@ -19,18 +19,22 @@ var lines = fs.readFileSync(logfile, 'utf8').split('\n');
 describe('lib/reader.js', function () {  
   describe('createBigFileWalker', function () {
     var walker;
-    it('should emit readable', function (done) {
+    it('should ready ok by emit readable', function (done) {
       walker = reader.createBigFileWalker(logfile, {
         offset: 10,
         piece: 100
       });
       walker.pause.should.be.not.ok;
-      walker.once('readable', function () {
+      walker.ready(function () {
         walker.curr.length.should.equal(100);
         walker.back.length.should.equal(100);
         walker.pause.should.be.ok;
         done();
       });
+    });
+
+    it('should ready ok', function (done) {
+      walker.ready(done);
     });
 
     it('should get -1 return []', function () {
