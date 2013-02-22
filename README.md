@@ -16,15 +16,19 @@ var walker = reader.createBigFileWalker(logfile, {
   piece: 100000   //控制每次读取的行数，默认为十万行
 });
 
-walker.once('readable', function () { //等待readable事件的触发，然后就可以通过get方法获取数据了
+//因为walker需要等待初始化读入完数据才能够开始使用，`ready`方法可以确保在初始化完成之后再执行
+walker.ready(function () {
   var result = walker.get(10);  
   //do something whith result
   result = walker.get(100);
-  var end = false;
+  //当所有的数据读取完成之后，walker.finish将被置为true
+  //同时walker会触发end事件：
   walker.once('end', function () {//end事件的触发，说明所有的数据都载入过了。如果再get不到就是读完了
-    end = true;
+    //do something
   });
-  if (!end && !result.length) {//如果获取不到数据，说明读取完内存中载入的数据，没有给walker CPU时间去再次载入数据。
+  //如果获取不到数据，说明读取完内存中载入的数据，没有给walker CPU时间去再次载入数据。
+  //一般内存中数据都足够大，除非一直采用同步的方式在处理数据，否则不会出现下面的情况
+  if (!walker.finish && !result.length) {
     walker.once('readable', function () {}); //等待载入
   }
 });
