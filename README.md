@@ -10,7 +10,7 @@
 ## 用法
 
 ```js
-var reader = require('reader');
+var reader = require('lreader');
 var walker = reader.createBigFileWalker(logfile, {
   offset: 10000,  //跳过前面的10000行，不传入时不会跳过
   piece: 100000   //控制每次读取的行数，默认为十万行
