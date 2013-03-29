@@ -13,5 +13,8 @@
     "should": "*",
     "jscover": ">=0.2.0"
   },
+  "script" {
+    "test": "make test"
+  },
   "main": "index"
 }
