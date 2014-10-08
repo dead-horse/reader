@@ -4,7 +4,7 @@
   "description": "按行读取任意大的文件",
   "keywords": [],
   "author": "dead-horse <dead_horse@qq.com>",
-  "repository": { "type": "git", "url": "git://gitlab.alibaba-inc.com/reader.git" },
+  "repository": { "type": "git", "url": "git@github.com:dead-horse/reader.git" },
   "dependencies": {
     "ndir": "0.1.5"
     },
